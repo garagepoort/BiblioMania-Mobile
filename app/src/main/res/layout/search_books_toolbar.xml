@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:minHeight="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:layout_width="match_parent"
+    android:elevation="@dimen/elevation_toolbar"
+    app:theme="@style/DefaultToolBarStyle"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <EditText
+            android:id="@+id/search_books_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_book_hint"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:imeOptions="flagNoExtractUi"
+            android:textStyle="bold"
+            android:textSize="@dimen/search_book_textsize"
+            android:background="#00000000"/>
+
+        <ImageButton
+            android:id="@+id/clear_text"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/cross_icon" />
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

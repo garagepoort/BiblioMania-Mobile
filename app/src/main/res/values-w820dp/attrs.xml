@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FloatingLabelEditText">
+        <attr name="hint" format="string" />
+        <attr name="hintTextview" format="string" />
+        <attr name="singleLine" format="boolean" />
+        <attr name="drawableRight" format="reference" />
+        <attr name="enabled" format="boolean" />
+        <attr name="fontFit" format="boolean" />
+        <attr name="textCapSentences" format="boolean" />
+        <attr name="allCaps" format="boolean" />
+        <attr name="inputType" format="string" />
+    </declare-styleable>
+</resources>

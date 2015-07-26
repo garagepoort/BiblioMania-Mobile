@@ -3,4 +3,24 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="title">Bibliomania</string>
+    <string name="username">Gebruikersnaam</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="generic_error">Er ging iets mis. Sorry...</string>
+    <string name="password">Paswoord</string>
+    <string name="login">log in</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="books_downloaded">Boeken gedownload</string>
+    <string name="downloading">Boeken aan het downloaden</string>
+    <string name="logging_in">Inloggen</string>
+    <string name="download_books">Download boeken</string>
+    <string name="books">Boeken</string>
+    <string name="author">Auteur</string>
+    <string name="publisher">Uitgever</string>
+    <string name="book_title">Titel</string>
+    <string name="search_book_hint">Zoek...</string>
 </resources>

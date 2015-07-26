@@ -1,0 +1,81 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.bendani.bibliomania.HomeFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/books_button"
+                style="@style/HomeButtonStyle"
+                android:layout_weight="1"
+                android:layout_width="@dimen/home_button_width"
+                android:layout_height="@dimen/home_button_height">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/book_icon" />
+                <TextView
+                    style="@style/HomeButtonTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/books"/>
+
+            </LinearLayout>
+
+            <Button
+                style="@style/HomeButtonStyle"
+                android:layout_width="@dimen/home_button_width"
+                android:layout_height="@dimen/home_button_height"
+                android:text="Books"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                style="@style/HomeButtonStyle"
+                android:layout_width="@dimen/home_button_width"
+                android:layout_height="@dimen/home_button_height"
+                android:text="Books"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:id="@+id/download_books_button"
+                style="@style/HomeButtonStyle"
+                android:layout_weight="1"
+                android:layout_width="@dimen/home_button_width"
+                android:layout_height="@dimen/home_button_height">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/download_icon" />
+                <TextView
+                    style="@style/HomeButtonTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/download_books"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
