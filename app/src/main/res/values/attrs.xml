@@ -11,4 +11,9 @@
         <attr name="allCaps" format="boolean" />
         <attr name="inputType" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="FloatingLabelTextview">
+        <attr name="textText" format="string" />
+        <attr name="hintText" format="string" />
+    </declare-styleable>
 </resources>

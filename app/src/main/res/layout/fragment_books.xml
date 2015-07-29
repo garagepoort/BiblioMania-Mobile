@@ -7,27 +7,28 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:shrinkColumns="1"
+        android:stretchColumns="1"
         android:background="@color/primary_dark_color"
         android:orientation="horizontal">
 
         <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_width="fill_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_height="match_parent"
-                android:layout_width="90dp"
-                android:gravity="center"
+                android:layout_width="0dp"
                 android:text="@string/book_title"
+                android:layout_weight="1"
                 android:textColor="@color/accent_color" />
 
             <TextView
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:text="@string/author"
                 android:textColor="@color/accent_color" />
 
@@ -35,7 +36,6 @@
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:text="@string/publisher"
                 android:textColor="@color/accent_color" />
         </TableRow>

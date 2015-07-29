@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bendani.bibliomania.R;
 import com.bendani.bibliomania.books.domain.Book;
+import com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview;
 
 
 public class GeneralBookInfoFragment extends Fragment {
@@ -17,7 +19,9 @@ public class GeneralBookInfoFragment extends Fragment {
 
     private Book book;
 
-    private TextView titleTextView;
+    private FloatingLabelTextview titleTextView;
+    private FloatingLabelTextview subtitleTextView;
+    private RatingBar ratingBar;
 
     public GeneralBookInfoFragment() {
         // Required empty public constructor
@@ -32,12 +36,16 @@ public class GeneralBookInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_general_book_info, container, false);
-        titleTextView = (TextView) view.findViewById(R.id.book_info_title_textview);
+        titleTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_title_textview);
+        subtitleTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_subtitle_textview);
+        ratingBar = (RatingBar) view.findViewById(R.id.rating);
         fillInElements();
         return view;
     }
 
     private void fillInElements(){
         titleTextView.setText(book.getTitle());
+        subtitleTextView.setText(book.getSubtitle());
+        ratingBar.setNumStars(book.getPersonalBookInfo().getRating());
     }
 }

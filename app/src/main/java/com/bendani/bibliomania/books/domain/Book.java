@@ -15,6 +15,8 @@ public class Book implements Serializable{
     private List<Author> authors;
     @SerializedName("publisher")
     private Publisher publisher;
+    @SerializedName("personal_book_info")
+    private PersonalBookInfo personalBookInfo;
 
     public String getTitle() {
         return title;
@@ -38,5 +40,13 @@ public class Book implements Serializable{
 
     public Publisher getPublisher() {
         return publisher;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public PersonalBookInfo getPersonalBookInfo() {
+        return personalBookInfo;
     }
 }
