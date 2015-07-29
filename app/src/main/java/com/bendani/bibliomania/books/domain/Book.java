@@ -2,9 +2,10 @@ package com.bendani.bibliomania.books.domain;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Book {
+public class Book implements Serializable{
 
     @SerializedName("title")
     private String title;

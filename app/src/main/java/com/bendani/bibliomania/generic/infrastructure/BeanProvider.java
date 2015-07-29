@@ -42,7 +42,7 @@ public class BeanProvider {
 
     public static BookService bookService(){
         if(bookService == null){
-            bookService = new BookService(booksResource(), userRepository(), connectionService(), booksRepository());
+            bookService = new BookService(booksResource(), userRepository(), connectionService(), booksRepository(), loginService());
         }
         return bookService;
     }

@@ -3,9 +3,9 @@ package com.bendani.bibliomania;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.bendani.bibliomania.bookinfo.BookInfoActivity;
+import com.bendani.bibliomania.books.domain.Book;
 import com.bendani.bibliomania.books.presentation.BooksFragment;
 import com.bendani.bibliomania.generic.application.BiblioManiaApp;
 import com.bendani.bibliomania.generic.infrastructure.BeanProvider;
@@ -40,11 +42,18 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar_default);
 
-        if(beanProvider.userRepository().isUserLoggedIn()){
+        if (beanProvider.userRepository().isUserLoggedIn()) {
             goToHome();
-        }else{
+        } else {
             goToLogin();
         }
+    }
+
+    public void goToBookInfo(Book book) {
+        Intent intent = new Intent(this, BookInfoActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.putExtra("BOOK", book);
+        startActivity(intent);
     }
 
     public void goToLogin() {
@@ -93,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);

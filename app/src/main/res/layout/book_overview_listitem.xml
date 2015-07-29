@@ -9,7 +9,10 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:stretchColumns="1">
-    <TableRow android:padding="20dp">
+    <TableRow
+        android:id="@+id/table_row"
+        android:background="@drawable/book_row"
+        android:padding="20dp">
         <TextView
             android:id="@+id/title_textview"
             android:layout_width="0dp"

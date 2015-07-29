@@ -23,6 +23,7 @@ public class BiblioManiaApp extends Application {
     public Activity getCurrentActivity(){
         return currentActivity;
     }
+
     public void setCurrentActivity(Activity mCurrentActivity){
         this.currentActivity = mCurrentActivity;
     }

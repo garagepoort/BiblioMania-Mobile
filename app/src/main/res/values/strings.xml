@@ -23,4 +23,8 @@
     <string name="publisher">Uitgever</string>
     <string name="book_title">Titel</string>
     <string name="search_book_hint">Zoek...</string>
+    <string name="title_activity_book_info">BookInfoActivity</string>
+    <string name="general_book_info_title">Boek info</string>
+    <string name="book_info_title">Boek informatie</string>
+    <string name="author_info_title">Auteur informatie</string>
 </resources>

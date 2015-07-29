@@ -4,8 +4,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.bendani.bibliomania.MainActivity;
 import com.bendani.bibliomania.R;
 import com.bendani.bibliomania.books.domain.Book;
 
@@ -16,7 +18,7 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
 
     private List<Book> books;
     private List<Book> filteredBooks;
-    private String constraint;
+    private MainActivity mainActivity;
 
     public List<Book> getItems() {
         return filteredBooks;
@@ -24,6 +26,7 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
 
     public static class BookViewHolder extends RecyclerView.ViewHolder {
         public Book book;
+        public TableRow tableRow;
         public TextView title;
         public TextView author;
         public TextView publisher;
@@ -33,9 +36,10 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public BookOverviewAdapter(List<Book> books) {
+    public BookOverviewAdapter(List<Book> books, MainActivity mainActivity) {
         this.books = books;
         this.filteredBooks = books;
+        this.mainActivity = mainActivity;
     }
 
     public void flushFilter() {
@@ -47,7 +51,6 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
     public void setFilter(String queryText) {
 
         filteredBooks = new ArrayList<>();
-        constraint = queryText.toString().toLowerCase();
         for (Book book : books) {
             if (book.getTitle().toLowerCase().contains(queryText) ||
                     book.getSubtitle().toLowerCase().contains(queryText) ||
@@ -61,10 +64,18 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_overview_listitem, parent, false);
-        BookViewHolder bookViewHolder = new BookViewHolder(v);
+        final BookViewHolder bookViewHolder = new BookViewHolder(v);
+        bookViewHolder.tableRow = (TableRow) v.findViewById(R.id.table_row);
         bookViewHolder.title = (TextView) v.findViewById(R.id.title_textview);
         bookViewHolder.author = (TextView) v.findViewById(R.id.author_textview);
         bookViewHolder.publisher = (TextView) v.findViewById(R.id.publisher_textview);
+
+        bookViewHolder.tableRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.goToBookInfo(bookViewHolder.book);
+            }
+        });
         return bookViewHolder;
     }
 

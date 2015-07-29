@@ -2,7 +2,9 @@ package com.bendani.bibliomania.books.domain;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Author {
+import java.io.Serializable;
+
+public class Author implements Serializable {
 
     @SerializedName("firstname")
     public String firstname;

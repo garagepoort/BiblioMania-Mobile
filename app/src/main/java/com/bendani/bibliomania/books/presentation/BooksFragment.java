@@ -47,7 +47,7 @@ public class BooksFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        bookOverviewAdapter = new BookOverviewAdapter(bookService().getBooks());
+        bookOverviewAdapter = new BookOverviewAdapter(bookService().getBooks(), mainActivity);
         recyclerView.setAdapter(bookOverviewAdapter);
 
         bookSearchEditText = (EditText) actionbar.findViewById(R.id.search_books_edittext);
