@@ -6,6 +6,8 @@ import com.bendani.bibliomania.books.domain.BookService;
 import com.bendani.bibliomania.books.infrastructure.BooksRepository;
 import com.bendani.bibliomania.books.infrastructure.BooksResource;
 import com.bendani.bibliomania.generic.presentation.error.ErrorParser;
+import com.bendani.bibliomania.image.domain.ImageService;
+import com.bendani.bibliomania.image.infrastructure.GetImageResource;
 import com.bendani.bibliomania.login.domain.LoginResource;
 import com.bendani.bibliomania.login.domain.LoginService;
 import com.bendani.bibliomania.login.domain.UserRepository;
@@ -21,6 +23,7 @@ public class BeanProvider {
     private static BookService bookService;
     private static ConnectionService connectionService;
     private static BooksRepository booksRepository;
+    private static ImageService imageService;
 
     public BeanProvider(Context context) {
         this.context = context;
@@ -40,9 +43,16 @@ public class BeanProvider {
         return connectionService;
     }
 
+    public static ImageService imageService(){
+        if(imageService == null){
+            imageService = new ImageService(context, getImageResource());
+        }
+        return imageService;
+    }
+
     public static BookService bookService(){
         if(bookService == null){
-            bookService = new BookService(booksResource(), userRepository(), connectionService(), booksRepository(), loginService());
+            bookService = new BookService(booksResource(), userRepository(), connectionService(), booksRepository(), loginService(), imageService());
         }
         return bookService;
     }
@@ -76,6 +86,11 @@ public class BeanProvider {
     public static BooksResource booksResource(){
         return getRestAdapter()
                 .create(BooksResource.class);
+    }
+
+    public static GetImageResource getImageResource(){
+        return getRestAdapter()
+                .create(GetImageResource.class);
     }
 
     private static RestAdapter getRestAdapter(){

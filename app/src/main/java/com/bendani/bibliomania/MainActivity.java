@@ -103,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void showKeyboard(View view) {
+        InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        keyboard.showSoftInput(view, 0);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);

@@ -21,6 +21,8 @@ public class GeneralBookInfoFragment extends Fragment {
 
     private FloatingLabelTextview titleTextView;
     private FloatingLabelTextview subtitleTextView;
+    private FloatingLabelTextview authorTextView;
+    private FloatingLabelTextview isbnTextView;
     private RatingBar ratingBar;
 
     public GeneralBookInfoFragment() {
@@ -38,6 +40,8 @@ public class GeneralBookInfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_general_book_info, container, false);
         titleTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_title_textview);
         subtitleTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_subtitle_textview);
+        authorTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_author_textview);
+        isbnTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_isbn_textview);
         ratingBar = (RatingBar) view.findViewById(R.id.rating);
         fillInElements();
         return view;
@@ -46,6 +50,8 @@ public class GeneralBookInfoFragment extends Fragment {
     private void fillInElements(){
         titleTextView.setText(book.getTitle());
         subtitleTextView.setText(book.getSubtitle());
+        authorTextView.setText(book.getPreferredAuthor().getFullName());
+        isbnTextView.setText(book.getISBN());
         ratingBar.setNumStars(book.getPersonalBookInfo().getRating());
     }
 }

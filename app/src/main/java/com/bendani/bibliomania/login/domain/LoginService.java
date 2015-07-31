@@ -35,6 +35,7 @@ public class LoginService {
                             public void onNext(LoginAnswer loginAnswer) {
                                 User user = new User(username, password, loginAnswer.getToken());
                                 userRepository.saveUser(user);
+                                subscriber.onNext(null);
                             }
                         });
             }

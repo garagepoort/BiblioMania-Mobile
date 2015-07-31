@@ -8,13 +8,13 @@
     <LinearLayout
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:layout_width="800dp"
+        android:layout_width="600dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RatingBar
             android:id="@+id/rating"
-            style="?android:attr/ratingBarStyleSmall"
+            style="?android:attr/ratingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -39,6 +39,22 @@
             android:layout_marginTop="20dp"
             app:textText="subtitle"
             app:hintText="@string/book_subtitle"/>
+
+        <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+            android:id="@+id/book_info_author_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            app:textText="subtitle"
+            app:hintText="@string/book_author"/>
+
+        <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+            android:id="@+id/book_info_isbn_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            app:textText="subtitle"
+            app:hintText="@string/book_isbn"/>
     </LinearLayout>
 
 

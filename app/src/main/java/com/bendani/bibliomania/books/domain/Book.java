@@ -5,8 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class Book implements Serializable{
+public class Book implements Serializable {
 
+    @SerializedName("id")
+    private int id;
     @SerializedName("title")
     private String title;
     @SerializedName("subtitle")
@@ -17,6 +19,10 @@ public class Book implements Serializable{
     private Publisher publisher;
     @SerializedName("personal_book_info")
     private PersonalBookInfo personalBookInfo;
+    @SerializedName("ISBN")
+    private String isbn;
+    @SerializedName("coverImage")
+    private String coverImage;
 
     public String getTitle() {
         return title;
@@ -26,12 +32,12 @@ public class Book implements Serializable{
         return subtitle;
     }
 
-    public Author getPreferredAuthor(){
-        if(authors.isEmpty()){
+    public Author getPreferredAuthor() {
+        if (authors.isEmpty()) {
             return null;
         }
         for (Author author : authors) {
-            if(author.isPreferredAuthor()){
+            if (author.isPreferredAuthor()) {
                 return author;
             }
         }
@@ -48,5 +54,17 @@ public class Book implements Serializable{
 
     public PersonalBookInfo getPersonalBookInfo() {
         return personalBookInfo;
+    }
+
+    public String getISBN() {
+        return isbn;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
     }
 }

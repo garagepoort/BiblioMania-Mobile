@@ -65,6 +65,7 @@ public class HomeFragment extends Fragment {
     private void downloadBooks() {
         final ProgressDialog progress = new ProgressDialog(getActivity());
         progress.setTitle(getString(R.string.downloading));
+        progress.setMessage(getString(R.string.download_books_progress_message));
         progress.setCancelable(false);
         progress.show();
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.bendani.bibliomania.MainActivity;
 import com.bendani.bibliomania.R;
@@ -26,6 +27,7 @@ public class BooksFragment extends Fragment {
     private RecyclerView recyclerView;
     private BookOverviewAdapter bookOverviewAdapter;
     private LinearLayoutManager linearLayoutManager;
+    private LinearLayout searchBooksWrapper;
     private EditText bookSearchEditText;
     private ImageButton clearText;
 
@@ -40,7 +42,7 @@ public class BooksFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_books, container, false);
         View actionbar = getActivity().findViewById(R.id.toolbar_actionbar_search_books);
 
-        MainActivity mainActivity = (MainActivity) getActivity();
+        final MainActivity mainActivity = (MainActivity) getActivity();
         mainActivity.setSearchBooksToolbar();
         recyclerView = (RecyclerView) view.findViewById(R.id.book_recycler_view);
 
@@ -51,7 +53,17 @@ public class BooksFragment extends Fragment {
         recyclerView.setAdapter(bookOverviewAdapter);
 
         bookSearchEditText = (EditText) actionbar.findViewById(R.id.search_books_edittext);
+        searchBooksWrapper = (LinearLayout) actionbar.findViewById(R.id.search_books_wrapper);
         bookSearchEditText.addTextChangedListener(getSearchEditTextTextWatcher());
+
+        searchBooksWrapper.setClickable(true);
+        searchBooksWrapper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bookSearchEditText.requestFocusFromTouch();
+                mainActivity.showKeyboard(bookSearchEditText);
+            }
+        });
 
         clearText = (ImageButton) actionbar.findViewById(R.id.clear_text);
         clearText.setOnClickListener(getClearTextClickListener());
