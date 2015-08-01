@@ -2,7 +2,9 @@ package com.bendani.bibliomania;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -12,13 +14,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.bendani.bibliomania.bookinfo.BookInfoActivity;
 import com.bendani.bibliomania.books.domain.Book;
 import com.bendani.bibliomania.books.presentation.BooksFragment;
 import com.bendani.bibliomania.generic.application.BiblioManiaApp;
+import com.bendani.bibliomania.generic.exception.NoInternetConnectionError;
 import com.bendani.bibliomania.generic.infrastructure.BeanProvider;
+import com.bendani.bibliomania.generic.infrastructure.RXJavaExtension.JustOnCompleteOrOnError;
+import com.bendani.bibliomania.generic.presentation.ConfirmationDialog;
 import com.bendani.bibliomania.login.LoginFragment;
+
+import static com.bendani.bibliomania.generic.infrastructure.BeanProvider.bookService;
+import static com.bendani.bibliomania.generic.infrastructure.BeanProvider.connectionService;
+import static com.bendani.bibliomania.generic.infrastructure.BeanProvider.errorParser;
+import static rx.android.schedulers.AndroidSchedulers.mainThread;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar_default);
 
         if (beanProvider.userRepository().isUserLoggedIn()) {
-            goToHome();
+            goToCorrectFragment(getIntent());
         } else {
             goToLogin();
         }
@@ -51,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToBookInfo(Book book) {
         Intent intent = new Intent(this, BookInfoActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         intent.putExtra("BOOK", book);
         startActivity(intent);
     }
@@ -65,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToBooksOverview() {
-        replaceFragment(new BooksFragment(), true);
+        replaceFragment(new BooksFragment(), false);
     }
 
 
@@ -75,16 +85,16 @@ public class MainActivity extends AppCompatActivity {
             getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
         Fragment currentFragment = getCurrentFragment();
-
-        if (currentFragment == null || !(currentFragment.getClass().equals(nextFragment.getClass()))) {
-            FragmentTransaction transaction = getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_placeholder, nextFragment);
-            if (addToBackStack) {
-                transaction.addToBackStack("");
-            }
-            transaction.commit();
+        if (currentFragment != null && currentFragment.getClass().equals(nextFragment.getClass())) {
+            getFragmentManager().popBackStack();
         }
+        FragmentTransaction transaction = getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_placeholder, nextFragment);
+        if (addToBackStack) {
+            transaction.addToBackStack("");
+        }
+        transaction.commit();
     }
 
 
@@ -134,7 +144,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() == 1) {
-            goToHome();
+            if(bookService().areBooksInitialized()){
+                goToBooksOverview();
+            }else{
+                goToHome();
+            }
         } else if (getFragmentManager().getBackStackEntryCount() > 1) {
             getFragmentManager().popBackStack();
         } else {
@@ -164,5 +178,55 @@ public class MainActivity extends AppCompatActivity {
     public void hideAllToolBars() {
         findViewById(R.id.toolbar_actionbar_default).setVisibility(View.GONE);
         findViewById(R.id.toolbar_actionbar_search_books).setVisibility(View.GONE);
+    }
+
+    private void goToCorrectFragment(Intent intent) {
+        String fragment = intent.getStringExtra("FRAGMENT");
+        if (fragment != null && fragment.equals("BOOKS")) {
+            goToBooksOverview();
+        } else {
+            if (!bookService().areBooksInitialized()) {
+                goToHome();
+            } else {
+                goToBooksOverview();
+            }
+        }
+    }
+
+    public void downloadBooks() {
+        if (!connectionService().isDeviceConnectedToInternet()) {
+            errorParser().createErrorDialogFromError(this, new NoInternetConnectionError()).show();
+        } else {
+            new ConfirmationDialog(this, getString(R.string.download_confirmation_title), getString(R.string.download_confirmation_message), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    downloadBooksWithoutConfirmation();
+                }
+            }).show();
+        }
+    }
+
+    public void downloadBooksWithoutConfirmation() {
+        final ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle(getString(R.string.downloading));
+        progress.setMessage(getString(R.string.download_books_progress_message));
+        progress.setCancelable(false);
+        progress.show();
+
+        beanProvider.bookService().downloadBooks()
+                .observeOn(mainThread())
+                .subscribe(new JustOnCompleteOrOnError<Void>() {
+                    @Override
+                    public void onCompleted() {
+                        progress.dismiss();
+                        Toast.makeText(MainActivity.this, getString(R.string.books_downloaded), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        progress.dismiss();
+                        errorParser().createErrorDialogFromError(MainActivity.this, e).show();
+                    }
+                });
     }
 }

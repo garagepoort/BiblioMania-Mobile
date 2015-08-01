@@ -13,7 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
+import com.bendani.bibliomania.MainActivity;
 import com.bendani.bibliomania.R;
 import com.bendani.bibliomania.books.domain.Book;
 
@@ -27,6 +30,7 @@ public class BookInfoActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private ActionBar actionBar;
     private Toolbar toolbar;
+    private ImageButton backButton;
     private Book book;
 
     @Override
@@ -41,11 +45,25 @@ public class BookInfoActivity extends AppCompatActivity {
         mViewPager.setAdapter(mBookInfoPagerAdapter);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        backButton = (ImageButton) findViewById(R.id.back_button);
         toolbar.setTitle(book.getTitle());
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_layout);
         tabLayout.setupWithViewPager(mViewPager);
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToListFragment();
+            }
+        });
+    }
+
+    private void goToListFragment() {
+        Intent intent = new Intent(BookInfoActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.putExtra("FRAGMENT", "BOOKS");
+        startActivity(intent);
     }
 
 

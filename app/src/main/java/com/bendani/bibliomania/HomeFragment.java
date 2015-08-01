@@ -2,23 +2,15 @@ package com.bendani.bibliomania;
 
 
 import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.bendani.bibliomania.books.domain.BookService;
-import com.bendani.bibliomania.generic.exception.NoInternetConnectionError;
-import com.bendani.bibliomania.generic.infrastructure.RXJavaExtension.JustOnCompleteOrOnError;
 
 import static com.bendani.bibliomania.generic.infrastructure.BeanProvider.bookService;
-import static com.bendani.bibliomania.generic.infrastructure.BeanProvider.connectionService;
-import static com.bendani.bibliomania.generic.infrastructure.BeanProvider.errorParser;
-import static rx.android.schedulers.AndroidSchedulers.mainThread;
 
 public class HomeFragment extends Fragment {
 
@@ -46,7 +38,7 @@ public class HomeFragment extends Fragment {
         downloadBooksButton.setOnClickListener(getDownloadBooksButtonOnClickListener());
 
         if (!bookService().areBooksInitialized()) {
-            downloadBooks();
+            mainActivity.downloadBooksWithoutConfirmation();
         }
 
         return view;
@@ -62,40 +54,13 @@ public class HomeFragment extends Fragment {
         };
     }
 
-    private void downloadBooks() {
-        final ProgressDialog progress = new ProgressDialog(getActivity());
-        progress.setTitle(getString(R.string.downloading));
-        progress.setMessage(getString(R.string.download_books_progress_message));
-        progress.setCancelable(false);
-        progress.show();
-
-        bookService.downloadBooks()
-                .observeOn(mainThread())
-                .subscribe(new JustOnCompleteOrOnError<Void>() {
-                    @Override
-                    public void onCompleted() {
-                        progress.dismiss();
-                        Toast.makeText(getActivity(), getString(R.string.books_downloaded), Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        progress.dismiss();
-                        errorParser().createErrorDialogFromError(getActivity(), e).show();
-                    }
-                });
-    }
-
 
     public View.OnClickListener getDownloadBooksButtonOnClickListener() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!connectionService().isDeviceConnectedToInternet()){
-                    errorParser().createErrorDialogFromError(getActivity(), new NoInternetConnectionError()).show();
-                }else{
-                    downloadBooks();
-                }
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.downloadBooks();
             }
         };
     }

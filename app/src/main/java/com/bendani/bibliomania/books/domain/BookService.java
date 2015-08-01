@@ -24,6 +24,8 @@ import rx.Subscriber;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
+import static java.lang.Thread.sleep;
+
 public class BookService {
 
     private BooksResource booksResource;
@@ -73,18 +75,26 @@ public class BookService {
 
                             @Override
                             public void onNext(List<Book> books) {
+                                if(booksRepository.hasBooksList()){
+                                    imageService.deleteAllImages(booksRepository.retrieve().getBooks());
+                                }
                                 booksRepository.store(new BookList(books));
-//                                Observable.from(books).flatMap(new Func1<Book, Observable<?>>() {
-//                                    @Override
-//                                    public Observable<Void> call(Book book) {
-//                                        return imageService.getBookImage(book);
-//                                    }
-//                                }).subscribe(new JustOnError<Object>() {
-//                                    @Override
-//                                    public void onError(Throwable e) {
-//                                        subscriber.onError(e);
-//                                    }
-//                                });
+                                Observable.from(books).flatMap(new Func1<Book, Observable<?>>() {
+                                    @Override
+                                    public Observable<Void> call(Book book) {
+                                        try {
+                                            sleep(200);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        return imageService.getBookImage(book);
+                                    }
+                                }).subscribe(new JustOnError<Object>() {
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        subscriber.onError(e);
+                                    }
+                                });
                             }
                         });
             }

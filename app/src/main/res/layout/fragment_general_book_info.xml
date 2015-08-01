@@ -12,6 +12,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/cover_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <RatingBar
             android:id="@+id/rating"
             style="?android:attr/ratingBarStyle"
@@ -19,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginRight="45dp"
+            android:isIndicator="true"
             android:max="10"
             android:numStars="10"
             android:rating="0.0"

@@ -1,6 +1,7 @@
 package com.bendani.bibliomania.books.presentation;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,6 +31,7 @@ public class BooksFragment extends Fragment {
     private LinearLayout searchBooksWrapper;
     private EditText bookSearchEditText;
     private ImageButton clearText;
+    private ImageButton downloadBooksButton;
 
     public BooksFragment() {
         // Required empty public constructor
@@ -56,19 +58,22 @@ public class BooksFragment extends Fragment {
         searchBooksWrapper = (LinearLayout) actionbar.findViewById(R.id.search_books_wrapper);
         bookSearchEditText.addTextChangedListener(getSearchEditTextTextWatcher());
 
-        searchBooksWrapper.setClickable(true);
-        searchBooksWrapper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bookSearchEditText.requestFocusFromTouch();
-                mainActivity.showKeyboard(bookSearchEditText);
-            }
-        });
-
         clearText = (ImageButton) actionbar.findViewById(R.id.clear_text);
+        downloadBooksButton = (ImageButton) actionbar.findViewById(R.id.download_books);
         clearText.setOnClickListener(getClearTextClickListener());
+        downloadBooksButton.setOnClickListener(getDownloadBooksOnclickListener());
 
         return view;
+    }
+
+    private View.OnClickListener getDownloadBooksOnclickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.downloadBooks();
+            }
+        };
     }
 
     private TextWatcher getSearchEditTextTextWatcher() {
