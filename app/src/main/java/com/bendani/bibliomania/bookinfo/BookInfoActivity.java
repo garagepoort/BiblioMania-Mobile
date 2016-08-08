@@ -2,8 +2,10 @@ package com.bendani.bibliomania.bookinfo;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +13,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,7 +69,6 @@ public class BookInfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_book_info, menu);
@@ -92,8 +94,11 @@ public class BookInfoActivity extends AppCompatActivity {
             generalBookInfoFragment.setBook(book);
             fragments.add(generalBookInfoFragment);
             titles.add(getString(R.string.general_book_info_title));
-            fragments.add(new AuthorInfoFragment());
-            titles.add(getString(R.string.author_info_title));
+
+            PersonalInfoFragment personalInfoFragment = new PersonalInfoFragment();
+            personalInfoFragment.setPersonalBookInfo(book.getPersonalBookInfo());
+            fragments.add(personalInfoFragment);
+            titles.add(getString(R.string.personal_info_title));
         }
 
         @Override

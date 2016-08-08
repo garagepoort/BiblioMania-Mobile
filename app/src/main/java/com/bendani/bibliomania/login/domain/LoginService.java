@@ -22,7 +22,8 @@ public class LoginService {
                 loginResource.login(username, password)
                         .subscribe(new Subscriber<LoginAnswer>() {
                             @Override
-                            public void onCompleted() {
+                            public void onCompleted()
+                            {
                                 subscriber.onCompleted();
                             }
 

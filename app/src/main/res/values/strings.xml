@@ -26,11 +26,21 @@
     <string name="title_activity_book_info">BookInfoActivity</string>
     <string name="general_book_info_title">Boek info</string>
     <string name="book_info_title">Boek informatie</string>
-    <string name="author_info_title">Auteur informatie</string>
+    <string name="author_info_title">Auteur</string>
+    <string name="personal_info_title">Persoonlijk</string>
     <string name="book_subtitle">Ondertitel</string>
     <string name="download_books_progress_message">Boeken worden gedownload en opgeslagen. Even geduld...</string>
     <string name="book_author">Auteur</string>
     <string name="book_isbn">ISBN</string>
     <string name="download_confirmation_title">Bent u zeker?</string>
     <string name="download_confirmation_message">Dit zal alle boeken en afbeeldingen terug downloaden. Dit is veel data en kan lang duren. Niet aangeraden als je op een mobiel netwerk zit.</string>
+    <string name="gift_info_from">Gekregen van</string>
+    <string name="gift_info_occasion">Gelegenheid</string>
+    <string name="gift_info_reason">Reden</string>
+    <string name="gift_info_date">Gift datum</string>
+    <string name="buy_info_reason">Reden</string>
+    <string name="buy_info_shop">Winkel</string>
+    <string name="buy_info_date">Datum</string>
+    <string name="buy_info_city_country_shop">Stad en land</string>
+    <string name="author_name">Naam</string>
 </resources>

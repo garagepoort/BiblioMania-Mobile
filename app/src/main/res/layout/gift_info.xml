@@ -1,0 +1,32 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_width="400dp"
+    android:orientation="vertical">
+
+    <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+        android:id="@+id/gift_info_from"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        app:hintText="@string/gift_info_from"/>
+
+    <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+        android:id="@+id/gift_info_occasion"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        app:hintText="@string/gift_info_occasion"/>
+
+    <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+        android:id="@+id/gift_info_date"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        app:hintText="@string/gift_info_date" />
+</LinearLayout>

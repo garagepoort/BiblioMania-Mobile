@@ -38,7 +38,7 @@ public class FloatingLabelTextview extends LinearLayout {
         textTextview.setText(textviewText);
         textTextview.setBackgroundResource(R.drawable.floatinglabel_edittext_bg);
         textTextview.setPadding(0, convertDpToPx(4), 0, convertDpToPx(14));
-        textTextview.setTextSize(20);
+        textTextview.setTextSize(16);
 
         setOrientation(LinearLayout.VERTICAL);
         addView(hintTextView);

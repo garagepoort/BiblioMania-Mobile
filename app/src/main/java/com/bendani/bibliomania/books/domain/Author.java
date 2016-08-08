@@ -6,66 +6,22 @@ import java.io.Serializable;
 
 public class Author implements Serializable {
 
-    @SerializedName("firstname")
-    public String firstname;
-    @SerializedName("infix")
-    public String infix;
+    @SerializedName("id")
+    public int id;
     @SerializedName("name")
-    public String name;
-    @SerializedName("pivot")
-    public AuthorBookPivot authorBookPivot;
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getInfix() {
-        return infix;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public static Builder newAuthor() {
-        return new Builder();
-    }
+    public Name name;
+    @SerializedName("preferred")
+    public boolean preferred;
 
     public boolean isPreferredAuthor() {
-        return authorBookPivot.isPreferred();
+        return preferred;
     }
 
     public String getFullName() {
-        if (infix == null || infix.isEmpty()) {
-            return name + " " + firstname;
+        if(name != null){
+            return name.getFullName();
         }
-        return name + " " + infix + " " + firstname;
+        return "";
     }
 
-    public static class Builder {
-        private Author author;
-
-        public Builder() {
-            this.author = new Author();
-        }
-
-        public Author build() {
-            return author;
-        }
-
-        public Builder withName(String name) {
-            author.name = name;
-            return this;
-        }
-
-        public Builder withSurame(String surname) {
-            author.firstname = surname;
-            return this;
-        }
-
-        public Builder withInfix(String infix) {
-            author.infix = infix;
-            return this;
-        }
-    }
 }

@@ -29,7 +29,6 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
         public TableRow tableRow;
         public TextView title;
         public TextView author;
-        public TextView publisher;
 
         public BookViewHolder(View v) {
             super(v);
@@ -52,9 +51,9 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
 
         filteredBooks = new ArrayList<>();
         for (Book book : books) {
-            if (book.getTitle().toLowerCase().contains(queryText) ||
-                    book.getSubtitle().toLowerCase().contains(queryText) ||
-                    book.getPreferredAuthor().getFullName().toLowerCase().contains(queryText)) {
+            if ((book.getTitle() !=null && book.getTitle().toLowerCase().contains(queryText)) ||
+                (book.getSubtitle() !=null && book.getSubtitle().toLowerCase().contains(queryText)) ||
+                book.getPreferredAuthor().getFullName().toLowerCase().contains(queryText)) {
                 filteredBooks.add(book);
             }
         }
@@ -68,7 +67,6 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
         bookViewHolder.tableRow = (TableRow) v.findViewById(R.id.table_row);
         bookViewHolder.title = (TextView) v.findViewById(R.id.title_textview);
         bookViewHolder.author = (TextView) v.findViewById(R.id.author_textview);
-        bookViewHolder.publisher = (TextView) v.findViewById(R.id.publisher_textview);
 
         bookViewHolder.tableRow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +84,6 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
         bookViewHolder.book = book;
         bookViewHolder.title.setText(book.getTitle());
         bookViewHolder.author.setText(book.getPreferredAuthor().getFullName());
-        bookViewHolder.publisher.setText(book.getPublisher().getName());
     }
 
     @Override

@@ -8,7 +8,6 @@ public class ConfirmationDialog extends AlertDialog {
 
     public ConfirmationDialog(Context context, String title, String message, OnClickListener yesClickListener) {
         super(context);
-
         setTitle(title);
         setMessage(message);
         setButton(DialogInterface.BUTTON_POSITIVE, "Yes", yesClickListener);

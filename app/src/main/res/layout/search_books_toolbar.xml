@@ -29,16 +29,16 @@
 
         <ImageButton
             android:id="@+id/clear_text"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="10dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/cross_icon" />
 
         <ImageButton
             android:id="@+id/download_books"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginRight="20dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/download_icon" />

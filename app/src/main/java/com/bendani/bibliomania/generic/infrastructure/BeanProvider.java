@@ -6,8 +6,6 @@ import com.bendani.bibliomania.books.domain.BookService;
 import com.bendani.bibliomania.books.infrastructure.BooksRepository;
 import com.bendani.bibliomania.books.infrastructure.BooksResource;
 import com.bendani.bibliomania.generic.presentation.error.ErrorParser;
-import com.bendani.bibliomania.image.domain.ImageService;
-import com.bendani.bibliomania.image.infrastructure.GetImageResource;
 import com.bendani.bibliomania.login.domain.LoginResource;
 import com.bendani.bibliomania.login.domain.LoginService;
 import com.bendani.bibliomania.login.domain.UserRepository;
@@ -23,7 +21,6 @@ public class BeanProvider {
     private static BookService bookService;
     private static ConnectionService connectionService;
     private static BooksRepository booksRepository;
-    private static ImageService imageService;
 
     public BeanProvider(Context context) {
         this.context = context;
@@ -43,16 +40,9 @@ public class BeanProvider {
         return connectionService;
     }
 
-    public static ImageService imageService(){
-        if(imageService == null){
-            imageService = new ImageService(context, getImageResource(), userRepository());
-        }
-        return imageService;
-    }
-
     public static BookService bookService(){
         if(bookService == null){
-            bookService = new BookService(booksResource(), userRepository(), connectionService(), booksRepository(), loginService(), imageService());
+            bookService = new BookService(booksResource(), userRepository(), connectionService(), booksRepository(), loginService());
         }
         return bookService;
     }
@@ -88,15 +78,10 @@ public class BeanProvider {
                 .create(BooksResource.class);
     }
 
-    public static GetImageResource getImageResource(){
-        return getRestAdapter()
-                .create(GetImageResource.class);
-    }
-
     private static RestAdapter getRestAdapter(){
         return new RestAdapter.Builder()
-                .setEndpoint("http://bendani-cooperation.com/BiblioMania/api")
-//                .setEndpoint("http://192.168.0.124/BiblioMania/api")
+                .setEndpoint("http://bendani.be/BiblioMania/api")
+//                .setEndpoint("http://192.168.1.6/BiblioMania/api")
                 .setLogLevel(RestAdapter.LogLevel.FULL).build();
     }
 }

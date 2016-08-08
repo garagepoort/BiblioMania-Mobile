@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bendani.bibliomania.R;
 import com.bendani.bibliomania.books.domain.Book;
+import com.bendani.bibliomania.books.domain.ReadingDate;
 import com.bendani.bibliomania.generic.infrastructure.BeanProvider;
 import com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview;
 
@@ -26,8 +27,6 @@ public class GeneralBookInfoFragment extends Fragment {
     private FloatingLabelTextview subtitleTextView;
     private FloatingLabelTextview authorTextView;
     private FloatingLabelTextview isbnTextView;
-    private ImageView coverImageView;
-    private RatingBar ratingBar;
 
     public GeneralBookInfoFragment() {
         // Required empty public constructor
@@ -46,8 +45,6 @@ public class GeneralBookInfoFragment extends Fragment {
         subtitleTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_subtitle_textview);
         authorTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_author_textview);
         isbnTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_isbn_textview);
-        ratingBar = (RatingBar) view.findViewById(R.id.rating);
-        coverImageView = (ImageView) view.findViewById(R.id.cover_imageview);
         fillInElements();
         return view;
     }
@@ -62,10 +59,5 @@ public class GeneralBookInfoFragment extends Fragment {
         subtitleTextView.setText(book.getSubtitle());
         authorTextView.setText(book.getPreferredAuthor().getFullName());
         isbnTextView.setText(book.getISBN());
-        ratingBar.setRating(book.getPersonalBookInfo().getRating());
-        Bitmap image = BeanProvider.imageService().getImage(book);
-        if(image != null){
-            coverImageView.setImageBitmap(image);
-        }
     }
 }

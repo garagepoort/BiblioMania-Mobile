@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 
 import com.bendani.bibliomania.MainActivity;
 import com.bendani.bibliomania.R;
+import com.bendani.bibliomania.zxing.IntentIntegrator;
 
 import static com.bendani.bibliomania.generic.infrastructure.BeanProvider.bookService;
 
@@ -32,6 +33,7 @@ public class BooksFragment extends Fragment {
     private EditText bookSearchEditText;
     private ImageButton clearText;
     private ImageButton downloadBooksButton;
+    private ImageButton addBookButton;
 
     public BooksFragment() {
         // Required empty public constructor
@@ -60,8 +62,16 @@ public class BooksFragment extends Fragment {
 
         clearText = (ImageButton) actionbar.findViewById(R.id.clear_text);
         downloadBooksButton = (ImageButton) actionbar.findViewById(R.id.download_books);
+        addBookButton = (ImageButton) actionbar.findViewById(R.id.add_button);
         clearText.setOnClickListener(getClearTextClickListener());
         downloadBooksButton.setOnClickListener(getDownloadBooksOnclickListener());
+        addBookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentIntegrator integrator = new IntentIntegrator(getActivity());
+                integrator.initiateScan();
+            }
+        });
 
         return view;
     }

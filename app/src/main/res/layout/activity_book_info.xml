@@ -31,9 +31,9 @@
     <ImageButton
         style="@style/fabIconStyle"
         android:id="@+id/back_button"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:padding="15dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
         android:src="@drawable/arrow_back"/>
 
 

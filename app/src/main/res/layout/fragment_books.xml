@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.bendani.bibliomania.books.presentation.BooksFragment">
 
@@ -31,13 +32,6 @@
                 android:layout_weight="1"
                 android:text="@string/author"
                 android:textColor="@color/accent_color" />
-
-            <TextView
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/publisher"
-                android:textColor="@color/accent_color" />
         </TableRow>
     </TableLayout>
 
@@ -46,5 +40,14 @@
         android:id="@+id/book_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
+    <ImageButton
+        style="@style/fabIconStyle"
+        android:id="@+id/add_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:src="@drawable/book_icon"/>
 
 </RelativeLayout>

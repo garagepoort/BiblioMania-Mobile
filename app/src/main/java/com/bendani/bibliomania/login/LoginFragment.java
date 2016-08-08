@@ -66,7 +66,7 @@ public class LoginFragment extends Fragment {
                             @Override
                             public void onError(Throwable e) {
                                 progress.dismiss();
-                                errorParser().createErrorDialogFromError(getActivity(), e);
+                                errorParser().createErrorDialogFromError(getActivity(), e).show();
                             }
                         });
             }

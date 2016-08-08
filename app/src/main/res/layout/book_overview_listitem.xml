@@ -28,14 +28,6 @@
             android:text="test text"
             android:layout_weight="1"
             android:textColor="@color/primary_color" />
-
-        <TextView
-            android:id="@+id/publisher_textview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="test text"
-            android:textColor="@color/primary_color" />
     </TableRow>
 </TableLayout>
 

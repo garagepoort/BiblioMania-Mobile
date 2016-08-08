@@ -6,10 +6,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             goToLogin();
         }
     }
+
 
     public void goToBookInfo(Book book) {
         Intent intent = new Intent(this, BookInfoActivity.class);
@@ -218,12 +223,14 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new JustOnCompleteOrOnError<Void>() {
                     @Override
                     public void onCompleted() {
+                        Log.e("BiblioMania","Books succesfully downloaded");
                         progress.dismiss();
                         Toast.makeText(MainActivity.this, getString(R.string.books_downloaded), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.e("BiblioMania","Books could not be downloaded", e);
                         progress.dismiss();
                         errorParser().createErrorDialogFromError(MainActivity.this, e).show();
                     }

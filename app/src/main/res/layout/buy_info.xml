@@ -1,0 +1,39 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_width="400dp"
+    android:orientation="vertical">
+
+    <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+        android:id="@+id/buy_info_shop"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        app:hintText="@string/buy_info_shop"/>
+
+    <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+        android:id="@+id/buy_info_reason"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        app:hintText="@string/buy_info_reason"/>
+
+    <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+        android:id="@+id/buy_info_city_country_shop"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        app:hintText="@string/buy_info_city_country_shop" />
+
+    <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+        android:id="@+id/buy_info_date"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        app:hintText="@string/buy_info_date" />
+</LinearLayout>
