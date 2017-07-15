@@ -95,8 +95,8 @@ public class BeanProvider {
 
     private static RestAdapter getRestAdapter(){
         return new RestAdapter.Builder()
-                .setEndpoint("http://bendani-cooperation.com/BiblioMania/api")
-//                .setEndpoint("http://192.168.0.124/BiblioMania/api")
+                .setEndpoint("http://bendani.be/BiblioMania/api")
+//                .setEndpoint("http://192.168.0.239/BiblioMania/api")
                 .setLogLevel(RestAdapter.LogLevel.FULL).build();
     }
 }

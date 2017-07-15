@@ -16,19 +16,22 @@ public class Book implements Serializable {
     @SerializedName("authors")
     private List<Author> authors;
     @SerializedName("publisher")
-    private Publisher publisher;
-    @SerializedName("personal_book_info")
+    private String publisher;
+    @SerializedName("personalBookInfo")
     private PersonalBookInfo personalBookInfo;
-    @SerializedName("ISBN")
+    @SerializedName("isbn")
     private String isbn;
-    @SerializedName("coverImage")
-    private String coverImage;
+    @SerializedName("imageName")
+    private String imageName;
 
     public String getTitle() {
         return title;
     }
 
     public String getSubtitle() {
+        if(subtitle==null){
+            return "";
+        }
         return subtitle;
     }
 
@@ -44,7 +47,7 @@ public class Book implements Serializable {
         return authors.get(0);
     }
 
-    public Publisher getPublisher() {
+    public String getPublisher() {
         return publisher;
     }
 
@@ -64,7 +67,7 @@ public class Book implements Serializable {
         return id;
     }
 
-    public String getCoverImage() {
-        return coverImage;
+    public String getImageName() {
+        return imageName;
     }
 }

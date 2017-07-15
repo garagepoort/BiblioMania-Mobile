@@ -21,7 +21,7 @@
             android:gravity="center"
             android:text="@string/title"
             android:textColor="@color/primary_color"
-            android:textSize="50dp" />
+            android:textSize="50sp" />
 
     </RelativeLayout>
 
@@ -33,32 +33,50 @@
         android:layout_marginRight="20dp"
         android:orientation="vertical">
 
-        <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelEditText
-            android:id="@+id/username_input"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+        <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelEditText
+            android:id="@+id/username_input"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             app:hint="@string/username"
             app:textCapSentences="false"
         />
+        </RelativeLayout>
 
-        <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelEditText
-            android:layout_marginTop="20dp"
-            android:id="@+id/password_input"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hint="@string/password"
-            app:textCapSentences="false"
-            app:inputType="password"
-            />
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelEditText
+                android:id="@+id/password_input"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:hint="@string/password"
+                app:inputType="password"
+                app:textCapSentences="false" />
+        </RelativeLayout>
 
-        <Button
-            android:id="@+id/login_button"
-            android:layout_marginTop="20dp"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
-            android:textColor="@color/accent_color"
-            android:background="@color/primary_color"
-            />
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="241dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dp"
+                android:background="@color/primary_color"
+                android:text="@string/login"
+                android:textColor="@color/accent_color" />
+        </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

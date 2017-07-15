@@ -90,10 +90,14 @@ public class BookInfoActivity extends AppCompatActivity {
             super(fm);
             GeneralBookInfoFragment generalBookInfoFragment = new GeneralBookInfoFragment();
             generalBookInfoFragment.setBook(book);
-            fragments.add(generalBookInfoFragment);
+
+            AuthorInfoFragment authorInfoFragment = new AuthorInfoFragment();
+            authorInfoFragment.setAuthor(book.getPreferredAuthor());
+
             titles.add(getString(R.string.general_book_info_title));
-            fragments.add(new AuthorInfoFragment());
             titles.add(getString(R.string.author_info_title));
+            fragments.add(generalBookInfoFragment);
+            fragments.add(authorInfoFragment);
         }
 
         @Override

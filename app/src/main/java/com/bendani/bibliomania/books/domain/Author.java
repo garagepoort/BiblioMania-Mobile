@@ -6,66 +6,57 @@ import java.io.Serializable;
 
 public class Author implements Serializable {
 
-    @SerializedName("firstname")
-    public String firstname;
-    @SerializedName("infix")
-    public String infix;
+
+    @SerializedName("id")
+    private int id;
     @SerializedName("name")
-    public String name;
-    @SerializedName("pivot")
-    public AuthorBookPivot authorBookPivot;
+    public Name name;
+    @SerializedName("preferred")
+    public boolean preferred;
+    @SerializedName("dateOfBirth")
+    public Date dateOfBirth;
+    @SerializedName("dateOfDeath")
+    public Date dateOfDeath;
+    @SerializedName("imageName")
+    private String imageName;
 
     public String getFirstname() {
-        return firstname;
+        return name.getFirstname();
     }
 
     public String getInfix() {
-        return infix;
+        return name.getInfix();
     }
 
-    public String getName() {
-        return name;
+    public String getLastname() {
+        return name.getLastname();
     }
 
-    public static Builder newAuthor() {
-        return new Builder();
+    public String getImageName() {
+        return imageName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public Date getDateOfDeath() {
+        return dateOfDeath;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public boolean isPreferredAuthor() {
-        return authorBookPivot.isPreferred();
+        return preferred;
     }
 
     public String getFullName() {
-        if (infix == null || infix.isEmpty()) {
-            return name + " " + firstname;
+        if (name.getInfix() == null || name.getInfix().isEmpty()) {
+            return name.getLastname() + " " + name.getFirstname();
         }
-        return name + " " + infix + " " + firstname;
+        return name.getLastname() + " " + name.getInfix() + " " + name.getFirstname();
     }
 
-    public static class Builder {
-        private Author author;
-
-        public Builder() {
-            this.author = new Author();
-        }
-
-        public Author build() {
-            return author;
-        }
-
-        public Builder withName(String name) {
-            author.name = name;
-            return this;
-        }
-
-        public Builder withSurame(String surname) {
-            author.firstname = surname;
-            return this;
-        }
-
-        public Builder withInfix(String infix) {
-            author.infix = infix;
-            return this;
-        }
-    }
 }

@@ -5,5 +5,5 @@
     <dimen name="home_button_height">100dp</dimen>
     <dimen name="home_button_width">100dp</dimen>
     <dimen name="elevation_toolbar">2dp</dimen>
-    <dimen name="search_book_textsize">15dp</dimen>
+    <dimen name="search_book_textsize">15sp</dimen>
 </resources>

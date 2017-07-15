@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:elevation="@dimen/elevation_toolbar"
     app:theme="@style/DefaultToolBarStyle"
-    android:layout_height="70dp">
+    android:layout_height="50dp">
 
     <LinearLayout
         android:id="@+id/search_books_wrapper"
@@ -15,32 +15,25 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:weightSum="1">
+
         <EditText
             android:id="@+id/search_books_edittext"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:hint="@string/search_book_hint"
             android:singleLine="true"
             android:layout_weight="1"
-            android:imeOptions="flagNoExtractUi"
+            android:imeOptions="actionDone"
             android:textStyle="bold"
             android:textSize="@dimen/search_book_textsize"
             android:background="@color/primary_color_transparant"/>
 
         <ImageButton
-            android:id="@+id/clear_text"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/cross_icon" />
-
-        <ImageButton
             android:id="@+id/download_books"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="37dp"
+            android:layout_height="27dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
             android:background="@drawable/download_icon" />
     </LinearLayout>
 

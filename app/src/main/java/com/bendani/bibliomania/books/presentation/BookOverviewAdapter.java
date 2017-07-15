@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
 
     public static class BookViewHolder extends RecyclerView.ViewHolder {
         public Book book;
-        public TableRow tableRow;
+        public TableLayout tableLayout;
         public TextView title;
         public TextView author;
         public TextView publisher;
@@ -65,12 +66,12 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_overview_listitem, parent, false);
         final BookViewHolder bookViewHolder = new BookViewHolder(v);
-        bookViewHolder.tableRow = (TableRow) v.findViewById(R.id.table_row);
+        bookViewHolder.tableLayout = (TableLayout) v.findViewById(R.id.book_overview_table_layout);
         bookViewHolder.title = (TextView) v.findViewById(R.id.title_textview);
         bookViewHolder.author = (TextView) v.findViewById(R.id.author_textview);
         bookViewHolder.publisher = (TextView) v.findViewById(R.id.publisher_textview);
 
-        bookViewHolder.tableRow.setOnClickListener(new View.OnClickListener() {
+        bookViewHolder.tableLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainActivity.goToBookInfo(bookViewHolder.book);
@@ -86,7 +87,7 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
         bookViewHolder.book = book;
         bookViewHolder.title.setText(book.getTitle());
         bookViewHolder.author.setText(book.getPreferredAuthor().getFullName());
-        bookViewHolder.publisher.setText(book.getPublisher().getName());
+        bookViewHolder.publisher.setText(book.getPublisher());
     }
 
     @Override

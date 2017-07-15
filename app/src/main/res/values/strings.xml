@@ -31,6 +31,10 @@
     <string name="download_books_progress_message">Boeken worden gedownload en opgeslagen. Even geduld...</string>
     <string name="book_author">Auteur</string>
     <string name="book_isbn">ISBN</string>
+    <string name="book_publisher">Uitgever</string>
     <string name="download_confirmation_title">Bent u zeker?</string>
     <string name="download_confirmation_message">Dit zal alle boeken en afbeeldingen terug downloaden. Dit is veel data en kan lang duren. Niet aangeraden als je op een mobiel netwerk zit.</string>
+    <string name="author_name">Naam</string>
+    <string name="author_date_of_birth">Date of birth</string>
+    <string name="author_date_of_death">Date of death</string>
 </resources>

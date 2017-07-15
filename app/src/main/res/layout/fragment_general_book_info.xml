@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     tools:context="com.bendani.bibliomania.bookinfo.GeneralBookInfoFragment">
 
     <LinearLayout
@@ -17,18 +19,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <RatingBar
-            android:id="@+id/rating"
-            style="?android:attr/ratingBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="45dp"
-            android:isIndicator="true"
-            android:max="10"
-            android:numStars="10"
-            android:rating="0.0"
-            android:stepSize="0.0" />
+        <!--<RatingBar-->
+            <!--android:id="@+id/rating"-->
+            <!--style="?android:attr/ratingBarStyleSmall"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_marginRight="45dp"-->
+            <!--android:isIndicator="true"-->
+            <!--android:max="10"-->
+            <!--android:numStars="10"-->
+            <!--android:rating="0.0"-->
+            <!--android:stepSize="0.0" />-->
 
         <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
             android:layout_marginTop="20dp"
@@ -61,6 +63,14 @@
             android:layout_marginTop="20dp"
             app:textText="subtitle"
             app:hintText="@string/book_isbn"/>
+
+        <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+            android:id="@+id/book_info_publisher_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            app:textText="subtitle"
+            app:hintText="@string/book_publisher"/>
     </LinearLayout>
 
 

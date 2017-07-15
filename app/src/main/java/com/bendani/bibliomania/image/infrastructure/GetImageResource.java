@@ -10,4 +10,6 @@ public interface GetImageResource {
 
     @GET("/image/book/{id}")
     public Observable<Response> getBookImage(@Path("id") int bookid, @Query("token") String token);
+    @GET("/image/author/{id}")
+    public Observable<Response> getAuthorImage(@Path("id") int authorId, @Query("token") String token);
 }

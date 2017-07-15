@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -28,9 +29,7 @@ public class BooksFragment extends Fragment {
     private RecyclerView recyclerView;
     private BookOverviewAdapter bookOverviewAdapter;
     private LinearLayoutManager linearLayoutManager;
-    private LinearLayout searchBooksWrapper;
     private EditText bookSearchEditText;
-    private ImageButton clearText;
     private ImageButton downloadBooksButton;
 
     public BooksFragment() {
@@ -39,8 +38,7 @@ public class BooksFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_books, container, false);
         View actionbar = getActivity().findViewById(R.id.toolbar_actionbar_search_books);
 
@@ -55,12 +53,9 @@ public class BooksFragment extends Fragment {
         recyclerView.setAdapter(bookOverviewAdapter);
 
         bookSearchEditText = (EditText) actionbar.findViewById(R.id.search_books_edittext);
-        searchBooksWrapper = (LinearLayout) actionbar.findViewById(R.id.search_books_wrapper);
         bookSearchEditText.addTextChangedListener(getSearchEditTextTextWatcher());
 
-        clearText = (ImageButton) actionbar.findViewById(R.id.clear_text);
         downloadBooksButton = (ImageButton) actionbar.findViewById(R.id.download_books);
-        clearText.setOnClickListener(getClearTextClickListener());
         downloadBooksButton.setOnClickListener(getDownloadBooksOnclickListener());
 
         return view;
