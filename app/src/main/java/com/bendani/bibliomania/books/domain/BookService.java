@@ -3,6 +3,7 @@ package com.bendani.bibliomania.books.domain;
 import com.bendani.bibliomania.books.infrastructure.BooksRepository;
 import com.bendani.bibliomania.books.infrastructure.BooksResource;
 import com.bendani.bibliomania.generic.exception.NoInternetConnectionError;
+import com.bendani.bibliomania.generic.infrastructure.BeanProvider;
 import com.bendani.bibliomania.generic.infrastructure.ConnectionService;
 import com.bendani.bibliomania.generic.infrastructure.RXJavaExtension.JustOnError;
 import com.bendani.bibliomania.image.domain.ImageService;
@@ -11,6 +12,7 @@ import com.bendani.bibliomania.login.domain.User;
 import com.bendani.bibliomania.login.domain.UserRepository;
 import com.bendani.bibliomania.login.exception.UserNotLoggedInException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -119,6 +121,9 @@ public class BookService {
     }
 
     public List<Book> getBooks() {
-        return booksRepository.retrieve().getBooks();
+        if(areBooksInitialized()){
+            return booksRepository.retrieve().getBooks();
+        }
+        return new ArrayList<>();
     }
 }

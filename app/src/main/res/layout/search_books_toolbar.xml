@@ -28,13 +28,12 @@
             android:textSize="@dimen/search_book_textsize"
             android:background="@color/primary_color_transparant"/>
 
-        <ImageButton
-            android:id="@+id/download_books"
-            android:layout_width="37dp"
-            android:layout_height="27dp"
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="10dp"
-            android:background="@drawable/download_icon" />
+            android:background="@android:drawable/ic_menu_search" />
     </LinearLayout>
 
 </android.support.v7.widget.Toolbar>

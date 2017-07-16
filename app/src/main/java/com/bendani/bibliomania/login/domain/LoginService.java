@@ -23,6 +23,15 @@ public class LoginService {
         });
     }
 
+    public Observable<Void> logout(){
+        return Observable.create(new Observable.OnSubscribe<Void>() {
+            @Override
+            public void call(final Subscriber<? super Void> subscriber) {
+                userRepository.deleteUser();
+            }
+        });
+    }
+
     public Observable<Void> login(final String username, final String password){
         return Observable.create(new Observable.OnSubscribe<Void>() {
             @Override
@@ -47,7 +56,7 @@ public class LoginService {
 
                     @Override
                     public void onNext(LoginAnswer loginAnswer) {
-                        User user = new User(username, password, loginAnswer.getToken());
+                        User user = new User(username, password, loginAnswer.getToken(), loginAnswer.getUser().getEmail());
                         userRepository.saveUser(user);
                         subscriber.onNext(null);
                     }

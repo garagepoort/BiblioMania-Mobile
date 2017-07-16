@@ -30,7 +30,6 @@ public class BooksFragment extends Fragment {
     private BookOverviewAdapter bookOverviewAdapter;
     private LinearLayoutManager linearLayoutManager;
     private EditText bookSearchEditText;
-    private ImageButton downloadBooksButton;
 
     public BooksFragment() {
         // Required empty public constructor
@@ -39,6 +38,7 @@ public class BooksFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_books, container, false);
         View actionbar = getActivity().findViewById(R.id.toolbar_actionbar_search_books);
 
@@ -55,20 +55,7 @@ public class BooksFragment extends Fragment {
         bookSearchEditText = (EditText) actionbar.findViewById(R.id.search_books_edittext);
         bookSearchEditText.addTextChangedListener(getSearchEditTextTextWatcher());
 
-        downloadBooksButton = (ImageButton) actionbar.findViewById(R.id.download_books);
-        downloadBooksButton.setOnClickListener(getDownloadBooksOnclickListener());
-
         return view;
-    }
-
-    private View.OnClickListener getDownloadBooksOnclickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.downloadBooks();
-            }
-        };
     }
 
     private TextWatcher getSearchEditTextTextWatcher() {
@@ -87,15 +74,5 @@ public class BooksFragment extends Fragment {
             }
         };
     }
-
-    private View.OnClickListener getClearTextClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bookSearchEditText.setText("");
-            }
-        };
-    }
-
 
 }

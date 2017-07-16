@@ -22,21 +22,14 @@
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:text="@string/book_title"
-                android:layout_weight="1"
+                android:layout_weight="0.7"
                 android:textColor="@color/accent_color" />
 
             <TextView
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.3"
                 android:text="@string/author"
-                android:textColor="@color/accent_color" />
-
-            <TextView
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/publisher"
                 android:textColor="@color/accent_color" />
         </TableRow>
     </TableLayout>

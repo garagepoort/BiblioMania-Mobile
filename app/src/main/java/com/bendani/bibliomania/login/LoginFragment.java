@@ -60,7 +60,7 @@ public class LoginFragment extends Fragment {
                             public void onCompleted() {
                                 progress.dismiss();
                                 MainActivity mainActivity = (MainActivity) getActivity();
-                                mainActivity.goToHome();
+                                mainActivity.goToBooksOverview();
                             }
 
                             @Override

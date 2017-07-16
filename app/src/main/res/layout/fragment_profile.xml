@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context="com.bendani.bibliomania.bookinfo.GeneralBookInfoFragment">
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+            android:layout_marginTop="20dp"
+            android:id="@+id/profile_username_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:textText="some title"
+            app:hintText="@string/profile_username"/>
+
+        <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelTextview
+            android:layout_marginTop="20dp"
+            android:id="@+id/profile_email_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:textText="some title"
+            app:hintText="@string/profile_email"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

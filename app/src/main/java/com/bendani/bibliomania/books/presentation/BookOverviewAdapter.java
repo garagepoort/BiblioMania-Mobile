@@ -30,7 +30,6 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
         public TableLayout tableLayout;
         public TextView title;
         public TextView author;
-        public TextView publisher;
 
         public BookViewHolder(View v) {
             super(v);
@@ -69,7 +68,6 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
         bookViewHolder.tableLayout = (TableLayout) v.findViewById(R.id.book_overview_table_layout);
         bookViewHolder.title = (TextView) v.findViewById(R.id.title_textview);
         bookViewHolder.author = (TextView) v.findViewById(R.id.author_textview);
-        bookViewHolder.publisher = (TextView) v.findViewById(R.id.publisher_textview);
 
         bookViewHolder.tableLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +85,6 @@ public class BookOverviewAdapter extends RecyclerView.Adapter {
         bookViewHolder.book = book;
         bookViewHolder.title.setText(book.getTitle());
         bookViewHolder.author.setText(book.getPreferredAuthor().getFullName());
-        bookViewHolder.publisher.setText(book.getPublisher());
     }
 
     @Override
