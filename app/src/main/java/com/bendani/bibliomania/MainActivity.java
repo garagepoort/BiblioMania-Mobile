@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private ListView drawerList;
+    private BooksFragment booksFragment;
 
     public MainActivity() {
         if (getApplication() == null) {
@@ -113,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToBooksOverview() {
-        replaceFragment(new BooksFragment(), true);
+        booksFragment = new BooksFragment();
+        replaceFragment(booksFragment, true);
     }
 
     public void goToProfileFragment() {
@@ -235,12 +237,12 @@ public class MainActivity extends AppCompatActivity {
         if (!connectionService().isDeviceConnectedToInternet()) {
             errorParser().createErrorDialogFromError(this, new NoInternetConnectionError()).show();
         } else {
-            new ConfirmationDialog(this, getString(R.string.download_confirmation_title), getString(R.string.download_confirmation_message), new DialogInterface.OnClickListener() {
+            ConfirmationDialog.create(this, getString(R.string.download_confirmation_title), getString(R.string.download_confirmation_message), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     downloadBooksWithoutConfirmation();
                 }
-            }).show();
+            });
         }
     }
 
@@ -257,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onCompleted() {
                         progress.dismiss();
+                        booksFragment.updateBooks();
                         Toast.makeText(MainActivity.this, getString(R.string.books_downloaded), Toast.LENGTH_SHORT).show();
                     }
 
@@ -282,13 +285,13 @@ public class MainActivity extends AppCompatActivity {
             } else if (position == 2) {
                 downloadBooks();
             } else if (position == 3) {
-                new ConfirmationDialog(MainActivity.this, getString(R.string.logout_confirmation_title), getString(R.string.logout_confirmation_message), new DialogInterface.OnClickListener() {
+                ConfirmationDialog.create(MainActivity.this, getString(R.string.logout_confirmation_title), getString(R.string.logout_confirmation_message), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         userRepository().deleteUser();
                         goToLogin();
                     }
-                }).show();
+                });
             }
             drawerLayout.closeDrawer(drawerList);
         }

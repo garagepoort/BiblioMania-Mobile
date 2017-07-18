@@ -13,6 +13,11 @@ public class Date implements Serializable {
     @SerializedName("year")
     public Integer year;
 
+    public Date(Integer day, Integer month, Integer year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
 
     public int getDay() {
         return day;

@@ -30,6 +30,7 @@ public class BooksFragment extends Fragment {
     private BookOverviewAdapter bookOverviewAdapter;
     private LinearLayoutManager linearLayoutManager;
     private EditText bookSearchEditText;
+    private MainActivity mainActivity;
 
     public BooksFragment() {
         // Required empty public constructor
@@ -42,7 +43,7 @@ public class BooksFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_books, container, false);
         View actionbar = getActivity().findViewById(R.id.toolbar_actionbar_search_books);
 
-        final MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity = (MainActivity) getActivity();
         mainActivity.setSearchBooksToolbar();
         recyclerView = (RecyclerView) view.findViewById(R.id.book_recycler_view);
 
@@ -75,4 +76,8 @@ public class BooksFragment extends Fragment {
         };
     }
 
+    public void updateBooks() {
+        bookOverviewAdapter = new BookOverviewAdapter(bookService().getBooks(), mainActivity);
+        recyclerView.setAdapter(bookOverviewAdapter);
+    }
 }

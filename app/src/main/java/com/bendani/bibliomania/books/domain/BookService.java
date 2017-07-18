@@ -5,6 +5,7 @@ import com.bendani.bibliomania.books.infrastructure.BooksResource;
 import com.bendani.bibliomania.generic.exception.NoInternetConnectionError;
 import com.bendani.bibliomania.generic.infrastructure.BeanProvider;
 import com.bendani.bibliomania.generic.infrastructure.ConnectionService;
+import com.bendani.bibliomania.generic.infrastructure.RXJavaExtension.JustOnCompleteOrOnError;
 import com.bendani.bibliomania.generic.infrastructure.RXJavaExtension.JustOnError;
 import com.bendani.bibliomania.image.domain.ImageService;
 import com.bendani.bibliomania.login.domain.LoginService;
@@ -72,6 +73,41 @@ public class BookService {
                             public void onNext(List<Book> books) {
                                 booksRepository.store(new BookList(books));
                             }
+                        });
+            }
+        });
+
+    }
+
+    public Observable<Void> addReadingDate(final ReadingDate readingDate) {
+        if (!userRepository.isUserLoggedIn()) {
+            return Observable.error(new UserNotLoggedInException());
+        }
+        if (!connectionService.isDeviceConnectedToInternet()) {
+            return Observable.error(new NoInternetConnectionError());
+        }
+        final User user = userRepository.retrieveUser();
+        return Observable.create(new Observable.OnSubscribe<Void>() {
+            @Override
+            public void call(final Subscriber<? super Void> subscriber) {
+                loginService.login(user.getUsername(), user.getPassword())
+                        .flatMap(new Func1<Void, Observable<Void>>() {
+                            @Override
+                            public Observable<Void> call(Void aVoid) {
+                                return booksResource.createReadingDate(userRepository.retrieveUser().getToken(), readingDate);
+                            }
+                        })
+                        .subscribe(new JustOnCompleteOrOnError<Void>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
                         });
             }
         });

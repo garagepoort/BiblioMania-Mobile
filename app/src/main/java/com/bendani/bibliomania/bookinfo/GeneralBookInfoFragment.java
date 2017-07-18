@@ -34,6 +34,7 @@ public class GeneralBookInfoFragment extends Fragment {
     private FloatingLabelTextview isbnTextView;
     private FloatingLabelTextview publisherTextView;
     private ImageView coverImageView;
+    private ImageView readImageView;
 
     public GeneralBookInfoFragment() {
         // Required empty public constructor
@@ -52,6 +53,7 @@ public class GeneralBookInfoFragment extends Fragment {
         isbnTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_isbn_textview);
         publisherTextView = (FloatingLabelTextview) view.findViewById(R.id.book_info_publisher_textview);
         coverImageView = (ImageView) view.findViewById(R.id.cover_imageview);
+        readImageView = (ImageView) view.findViewById(R.id.read_imageview);
         fillInElements();
         return view;
     }
@@ -75,6 +77,10 @@ public class GeneralBookInfoFragment extends Fragment {
         } else if (BeanProvider.connectionService().isDeviceConnectedToInternet()) {
             retrieveImage();
         }
+
+        if(book.getPersonalBookInfo().getReadingDates().isEmpty()){
+            readImageView.setVisibility(View.GONE);
+        }
     }
 
     private void retrieveImage() {
@@ -97,5 +103,13 @@ public class GeneralBookInfoFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    public void updateRead() {
+        if(book.getPersonalBookInfo().getReadingDates().isEmpty()) {
+            readImageView.setVisibility(View.GONE);
+        } else {
+            readImageView.setVisibility(View.VISIBLE);
+        }
     }
 }

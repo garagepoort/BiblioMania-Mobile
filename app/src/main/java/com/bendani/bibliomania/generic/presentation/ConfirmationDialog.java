@@ -4,19 +4,18 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-public class ConfirmationDialog extends AlertDialog {
+public class ConfirmationDialog {
 
-    public ConfirmationDialog(Context context, String title, String message, OnClickListener yesClickListener) {
-        super(context);
-
-        setTitle(title);
-        setMessage(message);
-        setButton(DialogInterface.BUTTON_POSITIVE, "Yes", yesClickListener);
-        setButton(DialogInterface.BUTTON_NEGATIVE, "No", new OnClickListener() {
+    public static void create(Context context, String title, String message, DialogInterface.OnClickListener yesClickListener){
+        new AlertDialog.Builder(context)
+        .setTitle(title)
+        .setMessage(message)
+        .setPositiveButton("Yes", yesClickListener)
+        .setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        });
+        }).show();
     }
 }

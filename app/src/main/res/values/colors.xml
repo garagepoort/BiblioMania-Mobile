@@ -4,4 +4,6 @@
     <color name="primary_color_transparant">#55428bca</color>
     <color name="primary_dark_color">#2d6ca2</color>
     <color name="accent_color">#FFFFFF</color>
+    <color name="green_color">#449d44</color>
+    <color name="green_color_dark">#398439</color>
 </resources>

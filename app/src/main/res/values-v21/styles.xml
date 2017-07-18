@@ -7,4 +7,5 @@
                 <item name="android:textColorSecondary">@color/primary_dark_color</item>
                 <item name="android:statusBarColor">@android:color/white</item>
         </style>
+
 </resources>

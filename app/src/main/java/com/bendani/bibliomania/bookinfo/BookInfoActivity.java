@@ -19,6 +19,10 @@ import android.widget.ImageButton;
 import com.bendani.bibliomania.MainActivity;
 import com.bendani.bibliomania.R;
 import com.bendani.bibliomania.books.domain.Book;
+import com.bendani.bibliomania.generic.exception.NoInternetConnectionError;
+import com.bendani.bibliomania.generic.infrastructure.BeanProvider;
+import com.bendani.bibliomania.generic.infrastructure.RXJavaExtension.JustOnCompleted;
+import com.bendani.bibliomania.generic.presentation.ReadingDateDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +35,7 @@ public class BookInfoActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private Toolbar toolbar;
     private ImageButton backButton;
+    private ImageButton readButton;
     private Book book;
 
     @Override
@@ -46,6 +51,7 @@ public class BookInfoActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         backButton = (ImageButton) findViewById(R.id.back_button);
+        readButton = (ImageButton) findViewById(R.id.read_button);
         toolbar.setTitle(book.getTitle());
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_layout);
@@ -55,6 +61,22 @@ public class BookInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goToListFragment();
+            }
+        });
+
+        readButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (BeanProvider.connectionService().isDeviceConnectedToInternet()){
+                    ReadingDateDialog.create(BookInfoActivity.this, book, new JustOnCompleted() {
+                        @Override
+                        public void onCompleted() {
+                            mBookInfoPagerAdapter.getGeneralBookInfoFragment().updateRead();
+                        }
+                    });
+                }else{
+                    BeanProvider.errorParser().createErrorDialogFromError(BookInfoActivity.this, new NoInternetConnectionError()).show();
+                }
             }
         });
     }
@@ -85,10 +107,15 @@ public class BookInfoActivity extends AppCompatActivity {
     public class BookInfoPagerAdapter extends FragmentStatePagerAdapter {
         private List<Fragment> fragments = new ArrayList<>();
         private List<String> titles = new ArrayList<>();
+        private final GeneralBookInfoFragment generalBookInfoFragment;
+
+        public GeneralBookInfoFragment getGeneralBookInfoFragment() {
+            return generalBookInfoFragment;
+        }
 
         public BookInfoPagerAdapter(FragmentManager fm) {
             super(fm);
-            GeneralBookInfoFragment generalBookInfoFragment = new GeneralBookInfoFragment();
+            generalBookInfoFragment = new GeneralBookInfoFragment();
             generalBookInfoFragment.setBook(book);
 
             AuthorInfoFragment authorInfoFragment = new AuthorInfoFragment();

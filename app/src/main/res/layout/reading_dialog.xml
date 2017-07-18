@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+    <RatingBar
+        android:id="@+id/reading_date_rating"
+        android:layout_marginLeft="30dp"
+        android:theme="@style/RatingBar"
+        android:rating="0"
+        android:stepSize="0.5"
+        android:numStars="5"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <com.bendani.bibliomania.generic.presentation.customview.FloatingLabelEditText
+            android:id="@+id/reading_date_review_input"
+            android:layout_width="300dp"
+            app:singleLine="false"
+            android:layout_marginLeft="30dp"
+            android:layout_height="wrap_content"
+            app:hint="@string/review"
+            app:textCapSentences="false"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <DatePicker
+            android:id="@+id/reading_date_date_picker"
+            android:scaleY="0.8"
+            android:scaleX="0.8"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</LinearLayout>

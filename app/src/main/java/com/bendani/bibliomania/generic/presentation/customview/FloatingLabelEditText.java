@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.bendani.bibliomania.R;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +84,14 @@ public class FloatingLabelEditText extends LinearLayout {
         editText.setOnFocusChangeListener(getFocusChangeListener());
         editText.setBackgroundResource(R.drawable.floatinglabel_edittext_bg);
         editText.setPadding(0, convertDpToPx(4), 0, convertDpToPx(14));
-
+        Field f = null;
+        try {
+            f =TextView.class.getDeclaredField("mCursorDrawableRes");
+            f.setAccessible(true);
+            f.set(editText, R.drawable.mycursor);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         setInputType();
 
         if (hintTextview == null) {
