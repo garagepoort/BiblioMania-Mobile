@@ -38,7 +38,7 @@ public class ReadingDateDialog {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Date date = new Date(datePicker.getDayOfMonth(), datePicker.getMonth(), datePicker.getYear());
+                        Date date = new Date(datePicker.getDayOfMonth(), datePicker.getMonth()+1, datePicker.getYear());
                         int rating = (int) (ratingBar.getRating()*2);
                         final ReadingDate readingDate = new ReadingDate(date, reviewTextField.getTextEditText(), rating, book.getPersonalBookInfo().getId());
                         BeanProvider.bookService().addReadingDate(readingDate).subscribe(new JustOnCompleteOrOnError<Void>() {
